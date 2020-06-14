@@ -1,4 +1,44 @@
-# example
+# AWS Lambda Using SAM
+
+This was done following this [tutorial](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html).
+
+## Build your package
+
+This will generate the package, artifacts and template inside a `.aws-sam` folder:
+
+```shell script
+sam build
+```
+
+## To deploy 
+
+```shell script
+sam deploy --guided
+```
+
+## Delete the stack
+
+When you finish your tests, delete the stack:
+
+```shell script
+aws cloudformation delete-stack --stack-name sam-app --region us-east-1
+```
+
+## To test locally
+
+Creates Docker container to test the api:
+
+```shell script
+sam local start-api
+```
+
+Execute specific function:
+
+```shell script
+sam local invoke "HelloWorldFunction" -e events/event.json
+```
+
+# Tutorial Description
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
