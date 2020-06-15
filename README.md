@@ -2,9 +2,18 @@
 
 This was done following this [tutorial](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html).
 
+## Setup a profile:
+
+It is safe to use a profile for this. You can do it by adding `--profile MyProfileHere` to the end of the commands 
+or export a default profile as this:
+
+```shell script
+$ export AWS_PROFILE=MyProfileHere
+```
+
 ## Build your package
 
-This will generate the package, artifacts and template inside a `.aws-sam` folder:
+This will generate the package, artifacts and template inside a `.aws-sam` folder: 
 
 ```shell script
 sam build
@@ -16,12 +25,28 @@ sam build
 sam deploy --guided
 ```
 
+or you can have a `samconfig.toml` file to guide your installation:
+
+```shell script
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "sam-app"
+s3_bucket = "xxx"
+s3_prefix = "sam-app"
+region = "eu-west-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+profile = "xxx"
+```
+
 ## Delete the stack
 
 When you finish your tests, delete the stack:
 
 ```shell script
-aws cloudformation delete-stack --stack-name sam-app --region us-east-1
+aws cloudformation delete-stack --stack-name sam-app --region eu-west-1
 ```
 
 ## To test locally
